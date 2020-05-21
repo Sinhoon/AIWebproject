@@ -35,18 +35,19 @@ public class Client {
 				fileSender.join();
 				result = fileSender.getResult();
 			}
-			else {
+			else if (mode=="1") {
 				TrendRecomSender fileSender = new TrendRecomSender(socket, mode, fileName, id ,age ,sex);
 				fileSender.start();
 				fileSender.join();
 				result = fileSender.getResult();
 			}
+			else {
+				
+			}
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}// catch
-		
-		
 		
 		
 	}

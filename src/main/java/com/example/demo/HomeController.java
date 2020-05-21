@@ -19,8 +19,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
 import java.awt.Image;
 import java.io.File;
@@ -90,21 +92,57 @@ public class HomeController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
-		String clothlist = multipartRequest.getParameter("recominput");
+		
+		String clothlist = "";
+		String mode = multipartRequest.getParameter("recominput");
+		System.out.println(mode);
+		if (mode.equals("0")) {
+			clothlist =  multipartRequest.getParameter("recominput_upper");
+		}else if (mode.equals("1")) {
+			clothlist =  multipartRequest.getParameter("recominput_lower");
+		}else if (mode.equals("2")) {
+			clothlist =  multipartRequest.getParameter("recominput_outer");
+		}else {
+			clothlist =  multipartRequest.getParameter("recominput_full");
+		}
+			
 		String age = multipartRequest.getParameter("age");
 		String sex = multipartRequest.getParameter("sex");
 		String fileName = "C://mywork/spring/demo/src/main/resources/static/" + multipartRequest.getParameter("filename");
 
 		Client client = new Client("1",fileName, clothlist, age, sex);
 		JsonObject result = client.getResult();
-	
-		JsonObject jo = new JsonObject();
-		String recomdata = result.get("recomdata").toString();
-		jo.addProperty("recomdata", recomdata );
+		String recom = result.get("list").toString();
+		
+		/*
+		 * JsonParser parser = new JsonParser(); JsonElement tradeElement =
+		 * parser.parse(recom); JsonArray trade = tradeElement.getAsJsonArray();
+		 * System.out.println(trade.get(0)); System.out.println(trade.size());
+		 */
+		
+		return recom;
 
-		System.out.println(clothlist);
-		return jo.toString();
+	}
+	
+	@RequestMapping(value = "/like.do", method = RequestMethod.POST, produces = "application/json")
+	@ResponseBody
+	public String like(MultipartHttpServletRequest multipartRequest, HttpServletRequest request,
+			HttpServletResponse response, Model model) {
+		try {
+			request.setCharacterEncoding("utf-8");
+			response.setCharacterEncoding("utf-8");
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		String id = "0";
+		String mode = multipartRequest.getParameter("likemode");
+		String like = multipartRequest.getParameter("likeinput");
+		System.out.println(mode);
+
+
+		return "success";
 
 	}
 }
