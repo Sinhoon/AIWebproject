@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+ 
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="com.example.demo.UserMapper">
+
+    <select id="findAll" resultType="com.example.demo.UserDTO">
+        SELECT * FROM semp;
+    </select>
+    
+    <select id="countNum" resultType="int">
+        SELECT COUNT(*) FROM semp;
+    </select>
+    
+    <select id="likecountNum" resultType="int">
+        SELECT COUNT(*) FROM crst_info;
+    </select>
+    
+    
+    <insert id="insertUser" parameterType="com.example.demo.UserDTO">
+		INSERT INTO semp(EMP_NUM, EMP_ID, EMP_PWD, EMP_AGE ,EMP_SEX) values (
+		#{EMP_NUM},
+		#{EMP_ID},
+		#{EMP_PWD},
+		#{EMP_AGE},
+		#{EMP_SEX}
+		)
+	</insert>
+
+	<select id="login" resultType="com.example.demo.UserDTO">
+		SELECT EMP_ID, EMP_PWD 
+		FROM semp
+		WHERE EMP_ID = #{EMP_ID}
+		AND EMP_PWD = #{EMP_PWD}   
+	</select>
+	
+	<select id="getNum" resultType="int">
+		SELECT EMP_NUM
+		FROM semp
+		WHERE EMP_ID = #{EMP_ID}   
+	</select>
+	
+	<insert id="insertLike" parameterType="com.example.demo.LikeDTO">
+		INSERT INTO crst_info(RST_NUM, RST_PATH, RST_DATA, EMP_NUM) values (
+		#{RST_NUM},
+		#{RST_PATH},
+		#{RST_DATA},
+		#{EMP_NUM},
+		)
+	</insert>
+	
+</mapper>
+
