@@ -13,7 +13,9 @@ public interface UserMapper {
     public int countNum();
     public UserDTO login(UserDTO dto) throws Exception;
     public int getNum(UserDTO dto);
+    public int checkLike(LikeDTO dto);
     public void insertLike(LikeDTO dto) throws Exception;
+    public void deleteLike(LikeDTO dto) throws Exception;
     public int likecountNum();
 }
 

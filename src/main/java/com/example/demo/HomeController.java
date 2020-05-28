@@ -73,7 +73,11 @@ public class HomeController {
 			e.printStackTrace();
 		}
 
-		String id = "0";
+		HttpSession session = request.getSession();
+		UserDTO user = (UserDTO) session.getAttribute("member");
+
+		String id = Integer.toString(user.EMP_NUM);
+		System.out.println(id);
 		String age = multipartRequest.getParameter("age");
 		String sex = multipartRequest.getParameter("sex");
 		String filePath = "C://mywork/spring/demo/src/main/resources/static/data/user";
@@ -149,7 +153,7 @@ public class HomeController {
 	@RequestMapping(value = "/like.do", method = RequestMethod.POST, produces = "application/json")
 	@ResponseBody
 	public String like(MultipartHttpServletRequest multipartRequest, HttpServletRequest request,
-			HttpServletResponse response, Model model, RedirectAttributes rttr) {
+			HttpServletResponse response, Model model, RedirectAttributes rttr) throws Exception {
 		try {
 			request.setCharacterEncoding("utf-8");
 			response.setCharacterEncoding("utf-8");
@@ -165,13 +169,21 @@ public class HomeController {
 		// 취소 1 좋아요 0
 		String mode = multipartRequest.getParameter("likemode");
 		String likeurl = multipartRequest.getParameter("likeinput");
-
-		if(mode == "1") {
-			int num = userMapper.likecountNum() + 1;
-			LikeDTO like = new LikeDTO(num,likeurl,"",id);
-			userMapper.insertUser(user);
+		String likeupper = multipartRequest.getParameter("likeupper");
+		String likelower = multipartRequest.getParameter("likelower");
+		String likefull = multipartRequest.getParameter("likefull");
+		String likeouter = multipartRequest.getParameter("likeouter");
+		
+		String likeall =  likeupper +","+ likelower +","+ likefull +","+ likeouter ;
+		System.out.println(likeall);
+		int num = userMapper.likecountNum() + 1;
+		LikeDTO like = new LikeDTO(num,likeurl,likeall,id);
+		if(mode.equals("1")) {
+			if (userMapper.checkLike(like) == 0) {
+			userMapper.insertLike(like);
+			}
 		}else {
-			
+			userMapper.deleteLike(like);
 		}
 		return "success";
 
@@ -224,8 +236,8 @@ public class HomeController {
 
 		int num = userMapper.getNum(new UserDTO (0, id,pwd, 0, ""));
 		UserDTO user = new UserDTO (num, id,pwd, 0, "");
-		
 		UserDTO login = userMapper.login(user);
+
 		
 		if(login == null) {
 			session.setAttribute("member", null);

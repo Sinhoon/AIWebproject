@@ -29,7 +29,7 @@
 	</insert>
 
 	<select id="login" resultType="com.example.demo.UserDTO">
-		SELECT EMP_ID, EMP_PWD 
+		SELECT EMP_NUM,EMP_ID, EMP_PWD 
 		FROM semp
 		WHERE EMP_ID = #{EMP_ID}
 		AND EMP_PWD = #{EMP_PWD}   
@@ -41,14 +41,27 @@
 		WHERE EMP_ID = #{EMP_ID}   
 	</select>
 	
+	<select id="checkLike" resultType="int">
+		SELECT EXISTS(
+		SELECT RST_NUM
+		FROM crst_info
+		WHERE RST_PATH = #{RST_PATH})as isChk
+	</select>
+	
 	<insert id="insertLike" parameterType="com.example.demo.LikeDTO">
 		INSERT INTO crst_info(RST_NUM, RST_PATH, RST_DATA, EMP_NUM) values (
 		#{RST_NUM},
 		#{RST_PATH},
 		#{RST_DATA},
-		#{EMP_NUM},
+		#{EMP_NUM}
 		)
 	</insert>
+	
+	<delete id="deleteLike" parameterType="com.example.demo.LikeDTO">
+		DELETE FROM crst_info
+		WHERE RST_PATH = #{RST_PATH}
+		AND EMP_NUM = #{EMP_NUM}  
+	</delete>
 	
 </mapper>
 

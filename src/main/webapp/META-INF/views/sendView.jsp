@@ -13,11 +13,11 @@
 <title>의상 평가</title>
 </head>
 <body>
-	<h2>의상 평가</h2>
-	
+
 <!--  header  -->
 <ul>
-	<li><a href="/sendView">의상 평가</a></li>
+	<li><a href="/index">홈</a></li>
+	<c:if test="${member != null}"><li><a href="/sendView">의상 평가</a></li></c:if>
 	<c:if test="${member != null}">
 	<li>
 		<p>${member.EMP_ID}님 안녕하세요.</p>
@@ -26,10 +26,9 @@
 	<c:if test="${member != null}"><li><a href="/logout">로그아웃</a></li></c:if>
 	<c:if test="${member == null}"><li><a href="/login">로그인</a></li></c:if>
 	<c:if test="${member == null}"><li><a href="/regist">회원가입</a></li></c:if>
-
 </ul>
 	
-
+<h2>의상 평가</h2>
 	
 	
 <!--  이미지 정보 입력   -->
@@ -65,6 +64,10 @@
 
 	<div style="display:none">
 	<form id="likeform" name="likeform" method="POST" enctype="multipart/form-data">
+		<input type="text" id="likeupper" name="likeupper" value="">
+		<input type="text" id="likelower" name="likelower" value="">
+		<input type="text" id="likefull" name="likefull" value="">
+		<input type="text" id="likeouter" name="likeouter" value="">
 		<input type="text" id="likeinput" name="likeinput" value="">
 		<input type="text" id="likemode" name="likemode" value="">
 	</form>
@@ -117,19 +120,19 @@
 		<div>
 			<div id ="img0upperdata">
 			<label for="img0upper">상의 :</label> 
-			<input type="text" id="img0upper" name="img0upper" value="" size="50" readonly><br> <br> 
+			<input type="text" id="img0upper" name="img0upper" value="" size="50"  readonly><br> <br> 
 			</div>
 			<div id ="img0lowerdata">
 			<label for="img0lower">하의:</label> 
-			<input type="text" id="img0lower" name="img0lower" value="" size="50" readonly><br> <br> 
+			<input type="text" id="img0lower" name="img0lower" value="" size="50"  readonly><br> <br> 
 			</div>
 			<div id ="img0outerdata">
 			<label for="img0outer">외투:</label>
-			<input type="text" id="img0outer" name="img0outer" value="" size="50" readonly><br><br> 
+			<input type="text" id="img0outer" name="img0outer" value="" size="50"  readonly><br><br> 
 			</div>
 			<div id ="img0fulldata">
 			<label for="img0full">전신:</label>
-			<input type="text" id="img0full" name="img0full" value="" size="50" readonly>
+			<input type="text" id="img0full" name="img0full" value="" size="50"   readonly>
 			</div>
 		</div>
 
@@ -210,6 +213,8 @@
 			$("#loadicon").show();
 			$(".btn-recom").hide();
 			$(".cloth_data").hide();
+			$('.like').html('좋아용');
+			$("#sorry").hide();
 
 			var form = new FormData(document.getElementById('form'));
 			$.ajax({
@@ -279,6 +284,7 @@
 		});
 		
 		$('.btn-recom').on('click', function() {
+			$('.like').html('좋아용');
 			$("#result").hide();
 			$("#loadicon").show();
 			$("#recom_result").hide();
@@ -349,6 +355,10 @@
 		
 		
 		$('.like').on('click', function() {
+			$("#likeupper").attr('value',"");
+			$("#likelower").attr('value',"");
+			$("#likefull").attr('value',"");
+			$("#likeouter").attr('value',"");
 			$("#likeinput").attr('value', $(this).attr('value'));
 			if($(this).text() == '좋아용'){
 				$(this).html('취소');
@@ -357,6 +367,10 @@
 				$(this).html('좋아용');
 				$("#likemode").attr('value', "0");
 			}
+			$("#likeupper").attr('value', $("#"+$(this).attr('id').substring( 0, 4 ).concat("upper")).attr('value'));
+			$("#likelower").attr('value', $("#"+$(this).attr('id').substring( 0, 4 ).concat("lower")).attr('value'));
+			$("#likefull").attr('value', $("#"+$(this).attr('id').substring( 0, 4 ).concat("full")).attr('value'));
+			$("#likeouter").attr('value', $("#"+$(this).attr('id').substring( 0, 4 ).concat("outer")).attr('value'));
 
 			var form = new FormData(document.getElementById('likeform'));
 			$.ajax({

@@ -17,7 +17,8 @@
 	
 <!--  header  -->
 <ul>
-	<li><a href="/sendView">의상 평가</a></li>
+	<li><a href="/index">홈</a></li>
+	<c:if test="${member != null}"><li><a href="/sendView">의상 평가</a></li></c:if>
 	<c:if test="${member != null}">
 	<li>
 		<p>${member.EMP_ID}님 안녕하세요.</p>
@@ -26,6 +27,5 @@
 	<c:if test="${member != null}"><li><a href="/logout">로그아웃</a></li></c:if>
 	<c:if test="${member == null}"><li><a href="/login">로그인</a></li></c:if>
 	<c:if test="${member == null}"><li><a href="/regist">회원가입</a></li></c:if>
-
 </ul>
 	

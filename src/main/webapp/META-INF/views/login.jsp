@@ -11,7 +11,14 @@
 <title>로그인</title>
 </head>
 <body>
-	<h2>로그인 </h2>
+
+<!--  header  -->
+<ul>
+	<li><a href="/index">홈</a></li>
+</ul>
+
+	
+<h2>로그인 </h2>
 	
 <!--  이미지 정보 입력   -->
 	<form action="/login.do" id="form" name="form" method="POST" enctype="multipart/form-data">
