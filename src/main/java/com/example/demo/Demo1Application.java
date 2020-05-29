@@ -9,8 +9,12 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
+import org.springframework.scheduling.TaskScheduler;
+import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler;
 
 @SpringBootApplication
+@EnableScheduling
 public class Demo1Application {
 
 	public static void main(String[] args) {
@@ -25,4 +29,10 @@ public class Demo1Application {
  
       return sessionFactory.getObject();
    }
+   @Bean
+	public TaskScheduler scheduler() {
+		ThreadPoolTaskScheduler scheduler = new ThreadPoolTaskScheduler();
+		scheduler.setPoolSize(4);
+		return scheduler;
+	}
 }

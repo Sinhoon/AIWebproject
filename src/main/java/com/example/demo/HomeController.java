@@ -292,7 +292,6 @@ public class HomeController {
 		UserDTO user = (UserDTO) session.getAttribute("member");
 
 		ArrayList<LikeDTO> likelist = userMapper.showLike(user);
-
 		ArrayList<String> likeall = new ArrayList<String>();
 		for(int i=0;i<likelist.size();i++) {
 			String sample = "" ;
@@ -348,20 +347,26 @@ public class HomeController {
 		HttpSession session = request.getSession();
 		UserDTO user = (UserDTO) session.getAttribute("member");
 		ArrayList<LikeDTO> likelist = userMapper.showLike(user);
+		
+		
 		ArrayList<String> likeall = new ArrayList<String>();
 		for(int i=0;i<likelist.size();i++) {
 			likeall.add(likelist.get(i).RST_PATH);
 		}
 
-		String age = "23";
-		String sex = "Female";
+		String age = "";
+		String sex = "";
 		String fileName = likeall.toString();
 		
-		Client client = new Client("2",fileName,"", age, sex);
+		Client client = new Client("3",fileName,"", age, sex);
+		System.out.println("sssssssssssssssssssssss");
 		JsonObject result = client.getResult();
+		System.out.println(result.size());
+		System.out.println("sssssssssssssssssssssss");
 		String recom = result.get("list").toString();
-		
+
 		recom = recom.replaceAll("NaN", "");
+		
 		return recom;
 
 	}

@@ -44,11 +44,13 @@ public class Client {
 				fileSender.join();
 				result = fileSender.getResult();
 			}
+			else if (mode=="2") {
+				FileSender fileSender = new FileSender(socket,mode, fileName, id ,age ,sex);
+				fileSender.start();
+				fileSender.join();
+				result = fileSender.getResult();
+			}
 			else {
-				/*
-				 * JsonParser parser = new JsonParser(); JsonElement tradeElement =
-				 * parser.parse(fileName); JsonArray trade = tradeElement.getAsJsonArray();
-				 */
 				UserRecomSender fileSender = new UserRecomSender(socket, mode, fileName, age, sex);
 				fileSender.start();
 				fileSender.join();

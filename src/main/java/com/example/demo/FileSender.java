@@ -38,7 +38,6 @@ class FileSender extends Thread {
 		this.sex = sex;
 		this.mode = mode;
 		try {
-			// �뜲�씠�꽣 �뒪�듃?���? �깮�꽦
 			this.os = socket.getOutputStream();
 			bos = new BufferedOutputStream(os);
 			this.is = socket.getInputStream();
