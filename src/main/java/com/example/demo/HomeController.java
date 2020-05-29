@@ -358,11 +358,9 @@ public class HomeController {
 		String sex = "";
 		String fileName = likeall.toString();
 		
-		Client client = new Client("3",fileName,"", age, sex);
-		System.out.println("sssssssssssssssssssssss");
+		Client client = new Client("3",fileName,"", age, sex);		
 		JsonObject result = client.getResult();
 		System.out.println(result.size());
-		System.out.println("sssssssssssssssssssssss");
 		String recom = result.get("list").toString();
 
 		recom = recom.replaceAll("NaN", "");
