@@ -11,14 +11,12 @@
 <title>회원 가입</title>
 </head>
 <body>
-
+<h2>회원 가입</h2>
 <!--  header  -->
 <ul>
-	<li><a href="/index">홈</a></li>
+	<li><a href="/">홈</a></li>
 </ul>
 
-	
-<h2>회원 가입</h2>
 
 
 <!--  이미지 정보 입력   -->

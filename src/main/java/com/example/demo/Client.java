@@ -4,7 +4,10 @@ import java.net.Socket;
 
 import com.example.demo.TrendRecomSender;
 import com.example.demo.FileSender;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
 public class Client {
 	Socket socket = null;
@@ -42,7 +45,14 @@ public class Client {
 				result = fileSender.getResult();
 			}
 			else {
-				
+				/*
+				 * JsonParser parser = new JsonParser(); JsonElement tradeElement =
+				 * parser.parse(fileName); JsonArray trade = tradeElement.getAsJsonArray();
+				 */
+				UserRecomSender fileSender = new UserRecomSender(socket, mode, fileName, age, sex);
+				fileSender.start();
+				fileSender.join();
+				result = fileSender.getResult();
 			}
 
 		} catch (Exception e) {

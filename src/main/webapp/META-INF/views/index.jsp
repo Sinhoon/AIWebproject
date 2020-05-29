@@ -17,8 +17,9 @@
 	
 <!--  header  -->
 <ul>
-	<li><a href="/index">홈</a></li>
+	<li><a href="/">홈</a></li>
 	<c:if test="${member != null}"><li><a href="/sendView">의상 평가</a></li></c:if>
+	<c:if test="${member != null}"><li><a href="/like">좋아요 기록</a></li></c:if>
 	<c:if test="${member != null}">
 	<li>
 		<p>${member.EMP_ID}님 안녕하세요.</p>

@@ -1,8 +1,9 @@
 package com.example.demo;
 
 import java.text.SimpleDateFormat;
-
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -60,6 +61,17 @@ public class HomeController {
 	public String sendView() {
 		return "sendView";
 	}
+	
+	@RequestMapping(value = "/like", method = RequestMethod.GET)
+	public String like() {
+		return "like";
+	}
+	
+	@RequestMapping(value = "/userlike", method = RequestMethod.GET)
+	public String userlike() {
+		return "userlike";
+	}
+	
 	
 	@RequestMapping(value = "/upload.do", method = RequestMethod.POST, produces = "application/json")
 	@ResponseBody
@@ -173,7 +185,18 @@ public class HomeController {
 		String likelower = multipartRequest.getParameter("likelower");
 		String likefull = multipartRequest.getParameter("likefull");
 		String likeouter = multipartRequest.getParameter("likeouter");
-		
+		if (likelower.equals("")) {
+			likelower = "not";
+		}
+		if (likeupper.equals("")) {
+			likeupper = "not";
+		}
+		if (likefull.equals("")) {
+			likefull = "not";
+		}
+		if (likeouter.equals("")) {
+			likeouter = "not";
+		}
 		String likeall =  likeupper +","+ likelower +","+ likefull +","+ likeouter ;
 		System.out.println(likeall);
 		int num = userMapper.likecountNum() + 1;
@@ -209,22 +232,21 @@ public class HomeController {
 		String pwd = multipartRequest.getParameter("pwd");
 		int age = Integer.parseInt(multipartRequest.getParameter("age"));
 		String sex = multipartRequest.getParameter("sex");
-		System.out.println(id);
-		System.out.println(pwd);
-		System.out.println(age);
-		System.out.println(sex);
 
 		//UserDTO dto = userMapper.findAll();
 		//System.out.println(dto.getEMP_ID());
 		int num = userMapper.countNum() + 1;
 		UserDTO user = new UserDTO(num,id,pwd,age,sex);
-		userMapper.insertUser(user);
 		
-		
-		HttpSession session = request.getSession();
-		session.setAttribute("member", user);
-		
-		return new RedirectView("/");
+		if(userMapper.checkId(user) == 0) {
+			userMapper.insertUser(user);
+			HttpSession session = request.getSession();
+			session.setAttribute("member", user);
+			return new RedirectView("/");
+		}
+		else {
+			return new RedirectView("/regist");
+		}
 
 	}
 	
@@ -255,4 +277,92 @@ public class HomeController {
 		return new RedirectView("/");
 	}
 	
+	@RequestMapping(value = "/showlike.do", method = RequestMethod.POST, produces = "application/json")
+	@ResponseBody
+	public String showlike(HttpServletRequest request, HttpServletResponse response, RedirectAttributes rttr) throws Exception {
+		try {
+			request.setCharacterEncoding("utf-8");
+			response.setCharacterEncoding("utf-8");
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		HttpSession session = request.getSession();
+		UserDTO user = (UserDTO) session.getAttribute("member");
+
+		ArrayList<LikeDTO> likelist = userMapper.showLike(user);
+
+		ArrayList<String> likeall = new ArrayList<String>();
+		for(int i=0;i<likelist.size();i++) {
+			String sample = "" ;
+			sample += ("{상의:"+ '"'+likelist.get(i).RST_DATA.split(",")[0]+'"');
+			sample += (",하의:"+ '"'+likelist.get(i).RST_DATA.split(",")[1]+'"');
+			sample += (",전신:"+ '"'+likelist.get(i).RST_DATA.split(",")[2]+'"');
+			sample += (",외투:"+ '"'+likelist.get(i).RST_DATA.split(",")[3]+'"');
+			sample += (",경로:"+ '"'+likelist.get(i).RST_PATH+'"' +"}");
+			likeall.add(sample);
+		}
+		return likeall.toString();
+
+	}
+
+	
+	@RequestMapping(value = "/cancellike.do", method = RequestMethod.POST, produces = "application/json")
+	@ResponseBody
+	public String cancellike( HttpServletRequest request,
+			HttpServletResponse response, Model model, RedirectAttributes rttr) throws Exception {
+		try {
+			request.setCharacterEncoding("utf-8");
+			response.setCharacterEncoding("utf-8");
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		HttpSession session = request.getSession();
+		UserDTO user = (UserDTO) session.getAttribute("member");
+
+		int id = user.EMP_NUM;
+		String likeurl = request.getParameter("cdata");
+		System.out.println(likeurl);
+		LikeDTO like = new LikeDTO(0,likeurl,"",id);
+		userMapper.deleteLike(like);
+
+		return "success";
+
+	}
+	
+	@RequestMapping(value = "/userlike.do", method = RequestMethod.POST, produces = "application/json")
+	@ResponseBody
+	public String userlike(HttpServletRequest request,
+			HttpServletResponse response, Model model) {
+		try {
+			request.setCharacterEncoding("utf-8");
+			response.setCharacterEncoding("utf-8");
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		HttpSession session = request.getSession();
+		UserDTO user = (UserDTO) session.getAttribute("member");
+		ArrayList<LikeDTO> likelist = userMapper.showLike(user);
+		ArrayList<String> likeall = new ArrayList<String>();
+		for(int i=0;i<likelist.size();i++) {
+			likeall.add(likelist.get(i).RST_PATH);
+		}
+
+		String age = "23";
+		String sex = "Female";
+		String fileName = likeall.toString();
+		
+		Client client = new Client("2",fileName,"", age, sex);
+		JsonObject result = client.getResult();
+		String recom = result.get("list").toString();
+		
+		recom = recom.replaceAll("NaN", "");
+		return recom;
+
+	}
 }

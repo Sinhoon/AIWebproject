@@ -13,11 +13,12 @@
 <title>의상 평가</title>
 </head>
 <body>
-
+<h2>의상 평가</h2>
 <!--  header  -->
 <ul>
-	<li><a href="/index">홈</a></li>
+	<li><a href="/">홈</a></li>
 	<c:if test="${member != null}"><li><a href="/sendView">의상 평가</a></li></c:if>
+	<c:if test="${member != null}"><li><a href="/like">좋아요 기록</a></li></c:if>
 	<c:if test="${member != null}">
 	<li>
 		<p>${member.EMP_ID}님 안녕하세요.</p>
@@ -28,14 +29,13 @@
 	<c:if test="${member == null}"><li><a href="/regist">회원가입</a></li></c:if>
 </ul>
 	
-<h2>의상 평가</h2>
 	
 	
 <!--  이미지 정보 입력   -->
 	<form id="form" name="form" method="POST" enctype="multipart/form-data">
 		<label for="uploadFile">이미지 입력</label> 
 		<input type="file"
-			id="uploadFile" name="uploadFile" capture="camera" accept="image/*"
+			id="uploadFile" name="uploadFile"  accept="image/*"
 			class="btn btn-default btn-lg"> 
 		<div>
 		<label for="age">나이</label> 
@@ -289,7 +289,7 @@
 			$("#loadicon").show();
 			$("#recom_result").hide();
 			$("#recominput").attr('value', $(this).attr('value'));
-			
+			$("#sorry").hide();
 			var form = new FormData(document.getElementById('form'));
 			$.ajax({
 				url : "/recom.do",

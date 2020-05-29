@@ -41,6 +41,14 @@
 		WHERE EMP_ID = #{EMP_ID}   
 	</select>
 	
+	<select id="checkId" resultType="int">
+		SELECT EXISTS(
+		SELECT EMP_NUM
+		FROM semp
+		WHERE EMP_ID = #{EMP_ID})as isChek
+	</select>
+	
+	
 	<select id="checkLike" resultType="int">
 		SELECT EXISTS(
 		SELECT RST_NUM
@@ -63,5 +71,14 @@
 		AND EMP_NUM = #{EMP_NUM}  
 	</delete>
 	
+	
+	<select id="showLike" resultType="com.example.demo.LikeDTO">
+        SELECT RST_PATH,RST_DATA
+        FROM crst_info
+        WHERE EMP_NUM = #{EMP_NUM}
+    </select>
+    
+    
+    
 </mapper>
 
