@@ -2,34 +2,113 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
-<html lang=ko>
+<html class="no-js" lang="ko">
 <head>
-<meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>유저 추천</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="manifest" href="site.webmanifest">
+    <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
 
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<title>유저 추천</title>
+    <!-- CSS here -->
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="assets/css/slicknav.css">
+    <link rel="stylesheet" href="assets/css/flaticon.css">
+    <link rel="stylesheet" href="assets/css/animate.min.css">
+    <link rel="stylesheet" href="assets/css/magnific-popup.css">
+    <link rel="stylesheet" href="assets/css/fontawesome-all.min.css">
+    <link rel="stylesheet" href="assets/css/themify-icons.css">
+    <link rel="stylesheet" href="assets/css/slick.css">
+    <link rel="stylesheet" href="assets/css/nice-select.css">
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
-<body>
-	<h2>유저 추천</h2>
-	
-<!--  header  -->
-<ul>
-	<li><a href="/">홈</a></li>
-	<c:if test="${member != null}"><li><a href="/sendView">의상 평가</a></li></c:if>
-	<c:if test="${member != null}"><li><a href="/like">좋아요 기록</a></li></c:if>
-	<c:if test="${member != null}">
-	<li>
-		<p>${member.EMP_ID}님 안녕하세요.</p>
-	</li>
-	</c:if>
-	<c:if test="${member != null}"><li><a href="/logout">로그아웃</a></li></c:if>
-	<c:if test="${member == null}"><li><a href="/login">로그인</a></li></c:if>
-	<c:if test="${member == null}"><li><a href="/regist">회원가입</a></li></c:if>
-</ul>
-	
+
+<body class="body-bg">
+<!--? Preloader Start -->
+<div id="preloader-active">
+    <div class="preloader d-flex align-items-center justify-content-center">
+        <div class="preloader-inner position-relative">
+            <div class="preloader-circle"></div>
+            <div class="preloader-img pere-text">
+                <img src="assets/img/logo/logo.png" alt="	">
+            </div>
+        </div>
+    </div>
+</div>
+<header>
+    <!-- Header Start -->
+    <div class="header-area header-transparent">
+        <div class="main-header header-sticky">
+            <div class="container-fluid">
+                <div class="menu-wrapper d-flex align-items-center justify-content-between">
+                    <!-- Logo -->
+                    <div class="logo">
+                        <a href="index.html"><img src="assets/img/logo/logo.png" alt=""></a>
+                    </div>
+                    <!-- Main-menu -->
+                    <div class="main-menu f-right d-none d-lg-block">
+                        <nav>	
+                            <ul id="navigation">
+							<li><a href="/">홈</a></li>
+							<c:if test="${member != null}"><li><a href="/sendView">트렌드 추천</a></li></c:if>
+							<c:if test="${member != null}"><li><a href="/like">유저 취향 추천</a></li></c:if>
+
+							<c:if test="${member != null}"><li><a href="/logout">로그아웃</a></li></c:if>
+							<c:if test="${member == null}"><li><a href="/login">로그인</a></li></c:if>
+							<c:if test="${member == null}"><li><a href="/regist">회원가입</a></li></c:if>
+							<c:if test="${member != null}">
+							<li>
+								<a href="/">${member.EMP_ID}님 </a>
+							</li>
+							</c:if>
+							</ul>
+							
+                        </nav>
+                    </div>          
+
+                    <!-- Mobile Menu -->
+                    <div class="col-12">
+                        <div class="mobile_menu d-block d-lg-none"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Header End -->
+</header>
+	    
+  <main>
+      <!--? Hero Start -->
+      <div class="slider-area2">
+          <div class="slider-height2 hero-overly d-flex align-items-center">
+              <div class="container">
+                  <div class="row">
+                      <div class="col-xl-12">
+                          <div class="hero-cap hero-cap2 text-center pt-80">
+                              <h2>추천 목록</h2>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="lode-more-btn text-center pt-60 pb-100">
+                          <a href="/like" class="btn">좋아요 목록</a>
+                   </div>
+              </div>
+          </div> 
+      </div>
+	        <!-- Hero End -->
+        <!--? Gallery Area Start -->
+        <div class="gallery-area pt-30 pb-40">
+            <div class="container-fluid p-0 fix">
+                <div class="row" id ="image_container">
+                    	
+                </div>
+            </div>
+        </div>
+        <!-- Gallery Area End -->
+    </main>   
 
 	<div style="display:none">
 	<form id="likeform" name="likeform" method="POST" enctype="multipart/form-data">
@@ -48,95 +127,46 @@
 	
 <!--  추천  결과   -->	
 
-	<div id="recom_result" style="display: none">
-	<div id="recom_result0" style="display: none">
-		<div>
-			<img id="img0" src="" width="400" height="400">
-			<button id="img0like" value="" class="like">좋아용</button>
-		</div>
-		<div>
-			<div id ="img0upperdata">
-			<label for="img0upper">상의 :</label> 
-			<input type="text" id="img0upper" name="img0upper" value="" size="50"  readonly><br> <br> 
-			</div>
-			<div id ="img0lowerdata">
-			<label for="img0lower">하의:</label> 
-			<input type="text" id="img0lower" name="img0lower" value="" size="50"  readonly><br> <br> 
-			</div>
-			<div id ="img0outerdata">
-			<label for="img0outer">외투:</label>
-			<input type="text" id="img0outer" name="img0outer" value="" size="50"  readonly><br><br> 
-			</div>
-			<div id ="img0fulldata">
-			<label for="img0full">전신:</label>
-			<input type="text" id="img0full" name="img0full" value="" size="50"   readonly>
-			</div>
-		</div>
-
-		</div>
-		
-	<div id="recom_result1" style="display: none">
-		<div>
-			<img id="img1" src="" width="400" height="400">
-			<button id="img1like" value="" class="like">좋아용</button>
-		</div>
-		<div>
-			<div id ="img1upperdata">
-			<label for="img1upper">상의 :</label> 
-			<input type="text" id="img1upper" name="img1upper" value="" size="50" readonly><br> <br> 
-			</div>
-			<div id ="img1lowerdata">
-			<label for="img1lower">하의:</label> 
-			<input type="text" id="img1lower" name="img1lower" value="" size="50" readonly><br> <br> 
-			</div>
-			<div id ="img1outerdata">
-			<label for="img1outer">외투:</label>
-			<input type="text" id="img1outer" name="img1outer" value="" size="50" readonly><br><br> 
-			</div>
-			<div id ="img1fulldata">
-			<label for="img1full">전신:</label>
-			<input type="text" id="img1full" name="img1full" value="" size="50" readonly>
-			</div>
-		</div>
-
-	</div>
-	<div id="recom_result2" style="display: none">
-		<div>
-			<img id="img2" src="" width="400" height="400">
-			<button id="img2like" value="" class="like">좋아용</button>
-		</div>
-		<div>
-			<div id ="img2upperdata">
-			<label for="img2upper">상의 :</label> 
-			<input type="text" id="img2upper" name="img2upper" value="" size="50" readonly><br> <br> 
-			</div>
-			<div id ="img2lowerdata">
-			<label for="img2lower">하의:</label> 
-			<input type="text" id="img2lower" name="img2lower" value="" size="50" readonly><br> <br> 
-			</div>
-			<div id ="img2outerdata">
-			<label for="img2outer">외투:</label>
-			<input type="text" id="img2outer" name="img2outer" value="" size="50" readonly><br><br> 
-			</div>
-			<div id ="img2fulldata">
-			<label for="img2full">전신:</label>
-			<input type="text" id="img2full" name="img2full" value="" size="50" readonly>
-			</div>
-		</div>
-
-	</div>
-	
-	</div>
-	
 	<div id="sorry" style="display:none">
 		<img src="data/icon/sorry.jpg"><br>
-		<h3>추천의상이 없습니다
+		<h3>추천의상이 없습니다</h3>
 	</div>
 
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js">	
 </script>
+ <!-- JS here -->
+<!-- All JS Custom Plugins Link Here here -->
+      <script src="./assets/js/vendor/modernizr-3.5.0.min.js"></script>
+<!-- Jquery, Popper, Bootstrap -->
+<script src="./assets/js/vendor/jquery-1.12.4.min.js"></script>
+      <script src="./assets/js/popper.min.js"></script>
+      <script src="./assets/js/bootstrap.min.js"></script>
+   <!-- Jquery Mobile Menu -->
+      <script src="./assets/js/jquery.slicknav.min.js"></script>
 
+<!-- Jquery Slick , Owl-Carousel Plugins -->
+      <script src="./assets/js/owl.carousel.min.js"></script>
+      <script src="./assets/js/slick.min.js"></script>
+<!-- One Page, Animated-HeadLin -->
+      <script src="./assets/js/wow.min.js"></script>
+<script src="./assets/js/animated.headline.js"></script>
+      <script src="./assets/js/jquery.magnific-popup.js"></script>
+
+<!-- Nice-select, sticky -->
+      <script src="./assets/js/jquery.nice-select.min.js"></script>
+<script src="./assets/js/jquery.sticky.js"></script>
+      
+      <!-- contact js -->
+      <script src="./assets/js/contact.js"></script>
+      <script src="./assets/js/jquery.form.js"></script>
+      <script src="./assets/js/jquery.validate.min.js"></script>
+      <script src="./assets/js/mail-script.js"></script>
+      <script src="./assets/js/jquery.ajaxchimp.min.js"></script>
+      
+<!-- Jquery Plugins, main Jquery -->	
+      <script src="./assets/js/plugins.js"></script>
+      <script src="./assets/js/main.js"></script>
 <script type="text/javascript">
 $("#loadicon").show();
 $.ajax({
@@ -148,39 +178,43 @@ $.ajax({
 		$("#loadicon").hide();
 		$("#recom_result").show();
 
-		var myObject = eval('(' + json + ')');
-		
+		var myObject = eval( json );	
+
 		if (myObject.length != 0){
-			for (let j = 0; j <= 3; j++)
-			{
-				$("#img"+j.toString()+"upperdata").hide();
-				$("#img"+j.toString()+"lowerdata").hide();
-				$("#img"+j.toString()+"outerdata").hide();
-				$("#img"+j.toString()+"fulldata").hide();
-			}
+			for (var i = 0; i < myObject.length; i++) {
 			
-			for (i in myObject)
-			{
-				if (myObject[i]["상의"] != ""){
-					$("#img"+i.toString()+"upperdata").show();
-				}
-				if (myObject[i]["하의"] != ""){
-					$("#img"+i.toString()+"lowerdata").show();
-				}
-				if (myObject[i]["외투"] != ""){
-					$("#img"+i.toString()+"outerdata").show();
-				}
-				if (myObject[i]["전신"] != ""){
-					$("#img"+i.toString()+"fulldata").show();
-				}
+				var strDOM = ""; 
+				strDOM += '<div class="col-xl-3 col-lg-3 col-md-6">'; 
+				strDOM += '<div class="single-gallery mb-30">'; 
+				strDOM += '<div class="gallery-img" style="background-image: url('+  myObject[i]["경로"] +');"></div>'; 
+				strDOM += '<div class="thumb-content-box">	'; 
 				
-				$("#img"+i.toString()+"upper").attr('value', myObject[i]["상의"]);
-				$("#img"+i.toString()+"lower").attr('value', myObject[i]["하의"]);
-				$("#img"+i.toString()+"outer").attr('value', myObject[i]["외투"]);
-				$("#img"+i.toString()+"full").attr('value', myObject[i]["전신"]);
-				$("#img"+i.toString()).attr('src', myObject[i]["경로"]);
-				$("#img"+i.toString()+"like").attr('value', myObject[i]["경로"]);
-				$("#recom_result"+i.toString()).show();
+				if(myObject[i]["상의"] != ""){
+					strDOM += '<h5><span>상의:</span>'+myObject[i]["상의"]+'</h5>' ;
+				} 
+				if(myObject[i]["하의"] != ""){
+					strDOM += '<h5><span>하의:</span>'+myObject[i]["하의"]+'</h5>' ;
+				} 
+				if(myObject[i]["전신"] != ""){
+					strDOM += '<h5><span>전신:</span>'+myObject[i]["전신"]+'</h5>' ;
+				} 
+				if(myObject[i]["외투"] != ""){
+					strDOM += '<h5><span>외투:</span>'+myObject[i]["외투"]+'</h5>' ;
+				} 
+
+				strDOM += '<div value='+ myObject[i]["외투"] +' class="outer">';
+				strDOM += '<div value='+ myObject[i]["전신"] +' class="full">';
+				strDOM += '<div value='+ myObject[i]["상의"] +' class="upper">';
+				strDOM += '<div value='+ myObject[i]["하의"] +' class="lower">';
+				strDOM += '<button  value='+ myObject[i]["경로"] +' class="like" style="color:red;">좋아요</button>';
+				strDOM += '</div></div></div></div>';
+
+				strDOM += '</div>';
+				strDOM += '</div>';
+				strDOM += '</div>';
+				
+				var $imageContainer = $("#image_container");
+			    $imageContainer.append(strDOM); 
 			}
 		}
 		else{
@@ -199,24 +233,28 @@ $.ajax({
 });
 
 
-$('.like').on('click', function() {
+$(document).on("click",".like",function() {
 	$("#likeupper").attr('value',"");
 	$("#likelower").attr('value',"");
 	$("#likefull").attr('value',"");
 	$("#likeouter").attr('value',"");
 	$("#likeinput").attr('value', encodeURI($(this).attr('value')));
-	if($(this).text() == '좋아용'){
+	if($(this).html() == '좋아요'){
 		$(this).html('취소');
 		$("#likemode").attr('value', "1");
 	}else {
-		$(this).html('좋아용');
+		$(this).html('좋아요');
 		$("#likemode").attr('value', "0");
 	}
-	$("#likeupper").attr('value', $("#"+$(this).attr('id').substring( 0, 4 ).concat("upper")).attr('value'));
-	$("#likelower").attr('value', $("#"+$(this).attr('id').substring( 0, 4 ).concat("lower")).attr('value'));
-	$("#likefull").attr('value', $("#"+$(this).attr('id').substring( 0, 4 ).concat("full")).attr('value'));
-	$("#likeouter").attr('value', $("#"+$(this).attr('id').substring( 0, 4 ).concat("outer")).attr('value'));
-
+	//$("#likeupper").attr('value', $("#"+$(this).attr('id').substring( 0, 4 ).concat("upper")).attr('value'));
+	//$("#likelower").attr('value', $("#"+$(this).attr('id').substring( 0, 4 ).concat("lower")).attr('value'));
+	//$("#likefull").attr('value', $("#"+$(this).attr('id').substring( 0, 4 ).concat("full")).attr('value'));
+	//$("#likeouter").attr('value', $("#"+$(this).attr('id').substring( 0, 4 ).concat("outer")).attr('value'));
+	$("#likeupper").attr('value', $(this).closest('.upper').attr('value'));
+	$("#likelower").attr('value', $(this).closest('.lower').attr('value'));
+	$("#likefull").attr('value',  $(this).closest('.full').attr('value'));
+	$("#likeouter").attr('value', $(this).closest('.outer').attr('value'));
+	
 	var form = new FormData(document.getElementById('likeform'));
 	$.ajax({
 		url : "/like.do",
@@ -236,3 +274,4 @@ $('.like').on('click', function() {
 
 
 </script>
+

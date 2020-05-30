@@ -234,7 +234,7 @@ public class HomeController {
 		String sex = multipartRequest.getParameter("sex");
 
 		//UserDTO dto = userMapper.findAll();
-		//System.out.println(dto.getEMP_ID());
+		//System.out.println(dto.getEMP_ID());	
 		int num = userMapper.countNum() + 1;
 		UserDTO user = new UserDTO(num,id,pwd,age,sex);
 		

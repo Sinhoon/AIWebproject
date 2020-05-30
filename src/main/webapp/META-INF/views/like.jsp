@@ -2,36 +2,122 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
-<html lang=ko>
+<html class="no-js" lang="ko">
 <head>
-<meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>유저 추천</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="manifest" href="site.webmanifest">
+    <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
 
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<title>좋아요</title>
+    <!-- CSS here -->
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="assets/css/slicknav.css">
+    <link rel="stylesheet" href="assets/css/flaticon.css">
+    <link rel="stylesheet" href="assets/css/animate.min.css">
+    <link rel="stylesheet" href="assets/css/magnific-popup.css">
+    <link rel="stylesheet" href="assets/css/fontawesome-all.min.css">
+    <link rel="stylesheet" href="assets/css/themify-icons.css">
+    <link rel="stylesheet" href="assets/css/slick.css">
+    <link rel="stylesheet" href="assets/css/nice-select.css">
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
-<body>
-	<h2>좋아요</h2>
-	
-<!--  header  -->
-<ul>
-	<li><a href="/">홈</a></li>
-	<c:if test="${member != null}"><li><a href="/sendView">의상 평가</a></li></c:if>
-	<c:if test="${member != null}"><li><a href="/like">좋아요 기록</a></li></c:if>
-	<c:if test="${member != null}">
-	<li>
-		<p>${member.EMP_ID}님 안녕하세요.</p>
-	</li>
-	</c:if>
-	<c:if test="${member != null}"><li><a href="/logout">로그아웃</a></li></c:if>
-	<c:if test="${member == null}"><li><a href="/login">로그인</a></li></c:if>
-	<c:if test="${member == null}"><li><a href="/regist">회원가입</a></li></c:if>
-</ul>
-	
-<div><button id="btn-likerecom"><a href="/userlike">추천 </a></button></div><br>
-<div id="image_container"> <!-- 이미지 마크업 생성 공간 --> </div>
+
+<body class="body-bg">
+<!--? Preloader Start -->
+<div id="preloader-active">
+    <div class="preloader d-flex align-items-center justify-content-center">
+        <div class="preloader-inner position-relative">
+            <div class="preloader-circle"></div>
+            <div class="preloader-img pere-text">
+                <img src="assets/img/logo/logo.png" alt="	">
+            </div>
+        </div>
+    </div>
+</div>
+<header>
+    <!-- Header Start -->
+    <div class="header-area header-transparent">
+        <div class="main-header header-sticky">
+            <div class="container-fluid">
+                <div class="menu-wrapper d-flex align-items-center justify-content-between">
+                    <!-- Logo -->
+                    <div class="logo">
+                        <a href="index.html"><img src="assets/img/logo/logo.png" alt=""></a>
+                    </div>
+                    <!-- Main-menu -->
+                    <div class="main-menu f-right d-none d-lg-block">
+                        <nav>	
+                            <ul id="navigation">
+							<li><a href="/">홈</a></li>
+							<c:if test="${member != null}"><li><a href="/sendView">트렌드 추천</a></li></c:if>
+							<c:if test="${member != null}"><li><a href="/like">유저 취향 추천</a></li></c:if>
+
+							<c:if test="${member != null}"><li><a href="/logout">로그아웃</a></li></c:if>
+							<c:if test="${member == null}"><li><a href="/login">로그인</a></li></c:if>
+							<c:if test="${member == null}"><li><a href="/regist">회원가입</a></li></c:if>
+							<c:if test="${member != null}">
+							<li>
+								<a href="/">${member.EMP_ID}님 </a>
+							</li>
+							</c:if>
+							</ul>
+							
+                        </nav>
+                    </div>          
+
+                    <!-- Mobile Menu -->
+                    <div class="col-12">
+                        <div class="mobile_menu d-block d-lg-none"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Header End -->
+</header>
+	    
+    <main>
+        <!--? Hero Start -->
+        <div class="slider-area2">
+            <div class="slider-height2 hero-overly d-flex align-items-center">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xl-12">
+                            <div class="hero-cap hero-cap2 text-center pt-80">
+                                <h2>좋아요 목록</h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="lode-more-btn text-center pt-60 pb-100">
+                            <a href="/userlike" class="btn">추천 목록</a>
+                     </div>
+                </div>
+            </div> 
+        </div>
+        <!-- Hero End -->
+        <!--? Gallery Area Start -->
+        <div class="gallery-area pt-30 pb-40">
+            <div class="container-fluid p-0 fix">
+                <div class="row" id ="image_container">
+                    	
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="lode-more-btn text-center pt-60 pb-100">
+                            <a href="/like" class="btn">더보기</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Gallery Area End -->
+    </main>    
+    
+
 
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js">	
@@ -45,34 +131,33 @@
 		contentType : false,
 		type : 'POST',
 		success : function(data) {
-			var myObject = eval(data);
-
-			
+			var myObject = eval(data);  	
 			for (var i = 0; i < myObject.length; i++) {
 				var strDOM = ""; 
-				strDOM += '<div class="image_panel">'; 
-				strDOM += '<img src=' + myObject[i]["경로"] + ' width="400" height="500">';
-				strDOM += '<button  value='+ myObject[i]["경로"] +' class="like">취소</button><br>';
+				strDOM += '<div class="col-xl-3 col-lg-3 col-md-6">'; 
+				strDOM += '<div class="single-gallery mb-30">'; 
+				strDOM += '<div class="gallery-img" style="background-image: url('+  myObject[i]["경로"] +');"></div>'; 
+				strDOM += '<div class="thumb-content-box">	'; 
 				
 				if(myObject[i]["상의"] != "not"){
-				strDOM += '<label for="upper">상의 :</label>' ;
-				strDOM += '<input type="text" class="upper" name="upper" value='+myObject[i]["상의"]+' size="50" readonly><br> ';
+					strDOM += '<h4><span>상의:</span>'+myObject[i]["상의"]+'</h4>' ;
 				} 
 				if(myObject[i]["하의"] != "not"){
-					strDOM += '<label for="lower">하의 :</label>' ;
-					strDOM += '<input type="text" class="lower" name="lower" value='+myObject[i]["하의"]+' size="50" readonly><br> ';
+					strDOM += '<h4><span>하의:</span>'+myObject[i]["하의"]+'</h4>' ;
 				} 
 				if(myObject[i]["전신"] != "not"){
-					strDOM += '<label for="full">전신 :</label>' ;
-					strDOM += '<input type="text" class="full" name="full" value='+myObject[i]["전신"]+' size="50" readonly><br> ';
+					strDOM += '<h4><span>전신:</span>'+myObject[i]["전신"]+'</h4>' ;
 				} 
 				if(myObject[i]["외투"] != "not"){
-					strDOM += '<label for="outer">외투 :</label>' ;
-					strDOM += '<input type="text" class="outer" name="outer" value='+myObject[i]["외투"]+' size="50" readonly><br> ';
+					strDOM += '<h4><span>외투:</span>'+myObject[i]["외투"]+'</h4>' ;
 				} 
 				
+				strDOM += '<button  value='+ myObject[i]["경로"] +' class="like" style="color:red;"> <i class="fas fa-angle-right">취소</i></button>';
 				strDOM += '</div>';
-			    // 이미지 컨테이너에 생성한 이미지 패널들을 추가하기
+				strDOM += '</div>';
+				strDOM += '</div>';
+
+				
 			    var $imageContainer = $("#image_container");
 			    $imageContainer.append(strDOM); 
 			}   
@@ -95,7 +180,7 @@
 			
 			success : function(data) {
 				console.log(cdata);
-				bt.closest('.image_panel').hide();
+				bt.closest('.col-xl-3').hide();
 				}   
 			,
 			error : function(jqXHR) {
@@ -109,3 +194,33 @@
 
 	
 </script>
+<script src="./assets/js/vendor/modernizr-3.5.0.min.js"></script>
+    <!-- Jquery, Popper, Bootstrap -->
+    <script src="./assets/js/vendor/jquery-1.12.4.min.js"></script>
+    <script src="./assets/js/popper.min.js"></script>
+    <script src="./assets/js/bootstrap.min.js"></script>
+    <!-- Jquery Mobile Menu -->
+    <script src="./assets/js/jquery.slicknav.min.js"></script>
+
+    <!-- Jquery Slick , Owl-Carousel Plugins -->
+    <script src="./assets/js/owl.carousel.min.js"></script>
+    <script src="./assets/js/slick.min.js"></script>
+    <!-- One Page, Animated-HeadLin -->
+    <script src="./assets/js/wow.min.js"></script>
+    <script src="./assets/js/animated.headline.js"></script>
+    <script src="./assets/js/jquery.magnific-popup.js"></script>
+
+    <!-- Nice-select, sticky -->
+    <script src="./assets/js/jquery.nice-select.min.js"></script>
+    <script src="./assets/js/jquery.sticky.js"></script>
+    
+    <!-- contact js -->
+    <script src="./assets/js/contact.js"></script>
+    <script src="./assets/js/jquery.form.js"></script>
+    <script src="./assets/js/jquery.validate.min.js"></script>
+    <script src="./assets/js/mail-script.js"></script>
+    <script src="./assets/js/jquery.ajaxchimp.min.js"></script>
+    
+    <!-- Jquery Plugins, main Jquery -->	
+    <script src="./assets/js/plugins.js"></script>
+    <script src="./assets/js/main.js"></script>
