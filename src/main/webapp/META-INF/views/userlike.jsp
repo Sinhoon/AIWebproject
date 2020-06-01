@@ -122,7 +122,7 @@
 	</div>
 	
 	<div id="loadicon" style="display: none">
-		<img src="data/icon/loadicon.gif">
+		<img src="data/icon/loadicon.gif" style="margin-left: auto; margin-right: auto; display: block;">
 	</div>
 	
 <!--  추천  결과   -->	

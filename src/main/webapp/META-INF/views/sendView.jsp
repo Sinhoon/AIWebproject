@@ -37,6 +37,15 @@
 	integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
 	crossorigin="anonymous">
 
+<style>
+.thumb-content label {
+	color:white;
+}
+.thumb-content .like{
+	color:red;
+}
+</style>
+
 </head>
 
 <body class="body-bg">
@@ -107,57 +116,55 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-xl-12">
-						<br>
-						<br>
-						<br>
-						<br>
+						<br> <br> <br> <br>
 					</div>
 				</div>
 				<div class="lode-more-btn text-center pt-60 pb-100">
 					<div class="container">
 						<div class="d-flex justify-content-center h-100">
 							<div class="card">
-								<div class="card-header" style="background-color:#11141b">
-									<h3 style="color:white">착장 등록</h3>
+								<div class="card-header" style="background-color: #11141b">
+									<h3 style="color: white">착장 등록</h3>
 								</div>
-								<div class="card-body" style="background-color:#e0dcdc">
-								
-								
-									<form id="form" name="form" method="POST" enctype="multipart/form-data">
+								<div class="card-body" style="background-color: #e0dcdc">
+
+
+									<form id="form" name="form" method="POST"
+										enctype="multipart/form-data">
 										<div class="input-group form-group">
-											<div class="input-group-prepend">
-											</div>
-											<input type="file" id="uploadFile" name="uploadFile" accept="image/*" >
+											<div class="input-group-prepend"></div>
+											<input type="file" id="uploadFile" name="uploadFile"
+												accept="image/*">
 
 										</div>
 										<div class="input-group form-group">
-											<div class="input-group-prepend">
-											</div>
-											<input type="text" class="form-control"
-												placeholder="나이" id="age" name="age">
+											<div class="input-group-prepend"></div>
+											<input type="text" class="form-control" placeholder="나이"
+												id="age" name="age">
 										</div>
 										<div class="input-group form-group">
-										<input type="radio"
-										name="sex" value="Female" checked> 여자</label> <label><input
-										type="radio" name="sex" value="male"> 남자</label>
+											<input type="radio" name="sex" value="Female" checked>
+											여자</label> <label><input type="radio" name="sex" value="male">
+												남자</label>
 										</div>
-										
+
 										<input type="text" name="filename" id="filename" value=""
-										style="display: none"> <input type="text" name="recominput"
-										id="recominput" value="" style="display: none"> <input
-										type="text" name="recominput_upper" id="recominput_upper" value=""
-										style="display: none"> <input type="text"
-										name="recominput_lower" id="recominput_lower" value=""
-										style="display: none"> <input type="text"
-										name="recominput_full" id="recominput_full" value=""
-										style="display: none"> <input type="text"
-										name="recominput_outer" id="recominput_outer" value=""
-										style="display: none">
-										
+											style="display: none"> <input type="text"
+											name="recominput" id="recominput" value=""
+											style="display: none"> <input type="text"
+											name="recominput_upper" id="recominput_upper" value=""
+											style="display: none"> <input type="text"
+											name="recominput_lower" id="recominput_lower" value=""
+											style="display: none"> <input type="text"
+											name="recominput_full" id="recominput_full" value=""
+											style="display: none"> <input type="text"
+											name="recominput_outer" id="recominput_outer" value=""
+											style="display: none">
+
 									</form>
 									<div class="form-group">
-											<input type="submit" value="업로드" id="btn-upload"
-												class="btn float-right login_btn">
+										<input type="submit" value="업로드" id="btn-upload"
+											class="btn float-right login_btn">
 									</div>
 								</div>
 							</div>
@@ -170,14 +177,6 @@
 
 	<!--  이미지 정보 입력   -->
 
-
-	<div id="recom" style="display: none">
-		<button class="btn-recom" id="upperbt" value="0">상의 추천</button>
-		<button class="btn-recom" id="lowerbt" value="1">하의 추천</button>
-		<button class="btn-recom" id="outerbt" value="2">외투 추천</button>
-		<button class="btn-recom" id="fullbt" value="3">전신 추천</button>
-	</div>
-
 	<div style="display: none">
 		<form id="likeform" name="likeform" method="POST"
 			enctype="multipart/form-data">
@@ -189,123 +188,142 @@
 				type="text" id="likemode" name="likemode" value="">
 		</form>
 	</div>
-	
-	
-	
-	
+
+
+
+
 
 	<!-- 입력이미지 정보 출력   -->
 
 	<div id="loadicon" style="display: none">
-		<img src="data/icon/loadicon.gif">
+		<img src="data/icon/loadicon.gif" style="margin-left: auto; margin-right: auto; display: block;">
 	</div>
 
 
-	<!--  추천  결과   -->
-	<div id="recom_result" style="display: none">
 
-		<div id="recom_result0" style="display: none">
-			<div>
-				<img id="img0" src="" width="400" height="400">
-				<button id="img0like" value="" class="like">좋아용</button>
+	<!--  recom   -->
+	<div class="gallery-area pt-30 pb-40" id="recom_result"
+		style="display: none">
+		
+		<div class="container-fluid p-0 fix">
+		<h3 style="color:white;text-align: center;"> 추천 결과 </h3><br><br>
+			<div class="row">
+				<div class="col-xl-3 col-lg-3 col-md-6" id="recom_result0">
+					<div class="single-gallery mb-30">
+						<div class="gallery-img" id="img0"></div>
+						<div class="thumb-content-box">
+							<div class="thumb-content">
+								<div>
+									<div id="img0upperdata">
+										<label for="img0upper">상의 :</label> <input type="text"
+											id="img0upper" name="img0upper" value="" size="50" readonly><br>
+										<br>
+									</div>
+									<div id="img0lowerdata">
+										<label for="img0lower">하의:</label> <input type="text"
+											id="img0lower" name="img0lower" value="" size="50" readonly><br>
+										<br>
+									</div>
+									<div id="img0outerdata">
+										<label for="img0outer">외투:</label> <input type="text"
+											id="img0outer" name="img0outer" value="" size="50" readonly><br>
+										<br>
+									</div>
+									<div id="img0fulldata">
+										<label for="img0full">전신:</label> <input type="text"
+											id="img0full" name="img0full" value="" size="50" readonly>
+									</div>
+									<div>
+										<button id="img0like" value="" class="like">좋아용</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+		
+				<div class="col-xl-3 col-lg-3 col-md-6" id="recom_result1">
+					<div class="single-gallery mb-30">
+						<div class="gallery-img" id="img1"></div>
+						<div class="thumb-content-box">
+							<div class="thumb-content">
+								<div>
+									<div id="img1upperdata">
+										<label for="img1upper">상의 :</label> <input type="text"
+											id="img1upper" name="img1upper" value="" size="50" readonly><br>
+										<br>
+									</div>
+									<div id="img1lowerdata">
+										<label for="img1lower">하의:</label> <input type="text"
+											id="img1lower" name="img1lower" value="" size="50" readonly><br>
+										<br>
+									</div>
+									<div id="img1outerdata">
+										<label for="img1outer">외투:</label> <input type="text"
+											id="img1outer" name="img1outer" value="" size="50" readonly><br>
+										<br>
+									</div>
+									<div id="img1fulldata">
+										<label for="img1full">전신:</label> <input type="text"
+											id="img1full" name="img1full" value="" size="50" readonly>
+									</div>
+									<div>
+										<button id="img1like" value="" class="like">좋아용</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-xl-3 col-lg-3 col-md-6" id="recom_result2">
+					<div class="single-gallery mb-30">
+						<div class="gallery-img" id="img2"></div>
+						<div class="thumb-content-box">
+							<div class="thumb-content">
+								<div>
+									<div id="img2upperdata">
+										<label for="img2upper">상의 :</label> <input type="text"
+											id="img2upper" name="img2upper" value="" size="50" readonly><br>
+										<br>
+									</div>
+									<div id="img2lowerdata">
+										<label for="img2lower">하의:</label> <input type="text"
+											id="img2lower" name="img2lower" value="" size="50" readonly><br>
+										<br>
+									</div>
+									<div id="img2outerdata">
+										<label for="img2outer">외투:</label> <input type="text"
+											id="img2outer" name="img2outer" value="" size="50" readonly><br>
+										<br>
+									</div>
+									<div id="img2fulldata">
+										<label for="img2full">전신:</label> <input type="text"
+											id="img2full" name="img2full" value="" size="50" readonly>
+									</div>
+									<div>
+										<button id="img2like" value="" class="like">좋아용</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
-			<div>
-				<div id="img0upperdata">
-					<label for="img0upper">상의 :</label> <input type="text"
-						id="img0upper" name="img0upper" value="" size="50" readonly><br>
-					<br>
-				</div>
-				<div id="img0lowerdata">
-					<label for="img0lower">하의:</label> <input type="text"
-						id="img0lower" name="img0lower" value="" size="50" readonly><br>
-					<br>
-				</div>
-				<div id="img0outerdata">
-					<label for="img0outer">외투:</label> <input type="text"
-						id="img0outer" name="img0outer" value="" size="50" readonly><br>
-					<br>
-				</div>
-				<div id="img0fulldata">
-					<label for="img0full">전신:</label> <input type="text" id="img0full"
-						name="img0full" value="" size="50" readonly>
-				</div>
-			</div>
-
 		</div>
-
-		<div id="recom_result1" style="display: none">
-			<div>
-				<img id="img1" src="" width="400" height="400">
-				<button id="img1like" value="" class="like">좋아용</button>
-			</div>
-			<div>
-				<div id="img1upperdata">
-					<label for="img1upper">상의 :</label> <input type="text"
-						id="img1upper" name="img1upper" value="" size="50" readonly><br>
-					<br>
-				</div>
-				<div id="img1lowerdata">
-					<label for="img1lower">하의:</label> <input type="text"
-						id="img1lower" name="img1lower" value="" size="50" readonly><br>
-					<br>
-				</div>
-				<div id="img1outerdata">
-					<label for="img1outer">외투:</label> <input type="text"
-						id="img1outer" name="img1outer" value="" size="50" readonly><br>
-					<br>
-				</div>
-				<div id="img1fulldata">
-					<label for="img1full">전신:</label> <input type="text" id="img1full"
-						name="img1full" value="" size="50" readonly>
-				</div>
-			</div>
-
-		</div>
-		<div id="recom_result2" style="display: none">
-			<div>
-				<img id="img2" src="" width="400" height="400">
-				<button id="img2like" value="" class="like">좋아용</button>
-			</div>
-			<div>
-				<div id="img2upperdata">
-					<label for="img2upper">상의 :</label> <input type="text"
-						id="img2upper" name="img2upper" value="" size="50" readonly><br>
-					<br>
-				</div>
-				<div id="img2lowerdata">
-					<label for="img2lower">하의:</label> <input type="text"
-						id="img2lower" name="img2lower" value="" size="50" readonly><br>
-					<br>
-				</div>
-				<div id="img2outerdata">
-					<label for="img2outer">외투:</label> <input type="text"
-						id="img2outer" name="img2outer" value="" size="50" readonly><br>
-					<br>
-				</div>
-				<div id="img2fulldata">
-					<label for="img2full">전신:</label> <input type="text" id="img2full"
-						name="img2full" value="" size="50" readonly>
-				</div>
-			</div>
-
-		</div>
-
 	</div>
 
 	<div id="sorry" style="display: none">
 		<img src="data/icon/sorry.jpg"><br>
-		<h3>추천의상이 없습니다
+		<h3>추천의상이 없습니다</h3>
 	</div>
 
 
-<!--? Gallery Area Start -->
-        <div class="gallery-area pt-30 pb-40" style="margin:auto;">
-            <div class="container-fluid p-0 fix">
-                <div class="row" id ="image_container">
-                    	
-                </div>
-            </div>
-        </div>
+	<!--? Gallery Area Start -->
+	<div class="gallery-area pt-300 pb-300" style="margin: auto;">
+		<div class="container-fluid p-0 fix">
+			<div class="row" id="image_container"></div>
+		</div>
+	</div>
 	<!--  자바 스크립트  -->
 
 	<script
@@ -313,96 +331,121 @@
 		
 	</script>
 
-			    
-			    
-			    			    
-
 
 	<script type="text/javascript">
-		$('#btn-upload').on('click', function() {
-			$("#recom").hide();
-			$("#result").hide();
-			$("#recom_result").hide();
-			$("#loadicon").show();
-			$(".btn-recom").hide();
-			$(".cloth_data").hide();
-			$('.like').html('좋아용');
-			$("#sorry").hide();
-
-			var form = new FormData(document.getElementById('form'));
-			$.ajax({
-				url : "/upload.do",
-				data : form,
-				dataType : 'text',
-				processData : false,
-				contentType : false,
-				type : 'POST',
-				success : function(json) {
-					//console.log(response);
-					$("#loadicon").hide();
-					var res = JSON.parse(json)
-					var data = JSON.parse(res.data)
+		$('#btn-upload')
+				.on(
+						'click',
+						function() {
 					
-					var strDOM = ""; 
-					strDOM += '<div class="col-xl-3 col-lg-3 col-md-6">'; 
-					strDOM += '<div class="single-gallery mb-30">'; 
-					strDOM += '<div class="gallery-img" id="ogimg" style="background-image: url('+  res.ogimg +');background-size: 170px;"></div>'; 
-					strDOM += '<div class="thumb-content-box">	'; 					
-					if(data.상의 != ""){
-						strDOM += '<h5><span>상의:</span>'+data.상의+'</h5>' ;
-					} 
-					if(data.하의 != ""){
-						strDOM += '<h5><span>하의:</span>'+data.하의+'</h5>' ;
-					} 
-					if(data.전신 != ""){
-						strDOM += '<h5><span>전신:</span>'+data.전신+'</h5>' ;
-					} 
-					if(data.외투 != ""){
-						strDOM += '<h5><span>외투:</span>'+data.외투 +'</h5>' ;
-					} 
-					strDOM += '</div>';
-					strDOM += '</div>';
-					strDOM += '</div>';				
+							$("#recom").hide();
+							$("#result").hide();
+							$("#recom_result").hide();
+							$("#loadicon").show();
+							$(".btn-recom").hide();
+							$(".cloth_data").hide();
+							$('.like').html('좋아용');
+							$("#sorry").hide();
+							$("#image_container").empty();
+							var form = new FormData(document
+									.getElementById('form'));
+							$
+									.ajax({
+										url : "/upload.do",
+										data : form,
+										dataType : 'text',
+										processData : false,
+										contentType : false,
+										type : 'POST',
+										success : function(json) {
+											//console.log(response);
+											$("#loadicon").hide();
+											var res = JSON.parse(json)
+											var data = JSON.parse(res.data)
 
-					strDOM += '<div class="col-xl-3 col-lg-3 col-md-6">'; 
-					strDOM += '<div class="single-gallery mb-30">'; 
-					strDOM += '<div class="gallery-img" id="afimg" style="background-image: url('+  res.afimg +');background-size: 170px;"></div>'; 
-					strDOM += '<div class="thumb-content-box">	'; 
-					strDOM += '</div>';
-					strDOM += '</div>';
-					strDOM += '</div>';
-					
-					var $imageContainer = $("#image_container");
-				    $imageContainer.append(strDOM); 
-						
-					
-					console.log("sss");
-					$("#afimg").attr('src', res.afimg);
-					$("#ogimg").attr('src', res.ogimg);
-					$("#filename").attr('value', res.afimg);
-					$("#recominput_upper").attr('value', data.상의);
-					$("#recominput_outer").attr('value', data.외투);
-					$("#recominput_full").attr('value', data.전신);
-					$("#recominput_lower").attr('value', data.하의);
-					$("#result").show();
-					$("#recom").show();
+											var strDOM = "";
+											strDOM += '<div class="col-xl-6 col-lg-6 col-md-6" style="border:1px solid white">';
+											strDOM += '<br><h3 style="color:white;text-align: center;"> before </h3><br>';
+											strDOM += '<div class="single-gallery mb-30">';
+											strDOM += '<div class="gallery-img" id="ogimg" style="background-image: url('
+													+ res.ogimg
+													+ ');background-size: contain; background-position: center;"></div>';
+											strDOM += '<div class="thumb-content-box">	';
+											strDOM += '</div>';
+											strDOM += '</div>';
+											strDOM += '</div>';
 
-				},
-				error : function(jqXHR) {
-					$("#result").hide();
-					$("#loadicon").hide();
-					console.log('error');
-				}
-			});
-		});
+											strDOM += '<div class="col-xl-6 col-lg-6 col-md-6" style="border:1px solid white">';
+											strDOM += '<br><h3 style="color:white;text-align: center;"> after </h3><br>';
+											strDOM += '<div class="single-gallery mb-30">';
+											strDOM += '<div class="gallery-img" id="afimg" style="background-image: url('
+													+ res.afimg
+													+ ');background-size: contain; background-position: center;"></div>';
+											strDOM += '<div class="thumb-content-box">	';
+											if (data.상의 != "") {
+												strDOM += '<h5 style="color:white"><span>상의:</span>'
+														+ data.상의 + '</h5>';
+												strDOM += '<button class="btn-recom" id="upperbt" value="0" style="color:red;">상의 추천</button>';
+											}
+											if (data.하의 != "") {
+												strDOM += '<h5 style="color:white"><span>하의:</span>'
+														+ data.하의 + '</h5>';
+												strDOM += '<button class="btn-recom" id="lowerbt" value="1" style="color:red;">하의 추천</button>';
+											}
+											if (data.전신 != "") {
+												strDOM += '<h5 style="color:white"><span>전신:</span>'
+														+ data.전신 + '</h5>';
+												strDOM += '<button class="btn-recom" id="fullbt" value="3" style="color:red;">전신 추천</button>';
+											}
+											if (data.외투 != "") {
+												strDOM += '<h5 style="color:white"><span>외투:</span>'
+														+ data.외투 + '</h5>';
+												strDOM += '<button class="btn-recom" id="outerbt" value="2" style="color:red;">외투 추천</button>';
+											}
 
-		$('.btn-recom').on(
-				'click',
+											strDOM += '</div>';
+											strDOM += '</div>';
+											strDOM += '</div>';
+
+											var $imageContainer = $("#image_container");
+											$imageContainer.append(strDOM);
+
+											$("#afimg").attr('src', res.afimg);
+											$("#ogimg").attr('src', res.ogimg);
+											$("#filename").attr('value',
+													res.afimg);
+											$("#recominput_upper").attr(
+													'value', data.상의);
+											$("#recominput_outer").attr(
+													'value', data.외투);
+											$("#recominput_full").attr('value',
+													data.전신);
+											$("#recominput_lower").attr(
+													'value', data.하의);
+											$("#result").show();
+											$("#recom").show();
+
+										},
+										error : function(jqXHR) {
+											$("#result").hide();
+											$("#loadicon").hide();
+											console.log('error');
+										}
+									});
+						});
+
+		$(document).on(
+				"click",
+				".btn-recom",
 				function() {
 					$('.like').html('좋아용');
 					$("#result").hide();
 					$("#loadicon").show();
 					$("#recom_result").hide();
+					$("#recom_result0").hide();
+					$("#recom_result1").hide();
+					$("#recom_result2").hide();
+
 					$("#recominput").attr('value', $(this).attr('value'));
 					$("#sorry").hide();
 					var form = new FormData(document.getElementById('form'));
@@ -457,10 +500,14 @@
 											'value', myObject[i]["외투"]);
 									$("#img" + i.toString() + "full").attr(
 											'value', myObject[i]["전신"]);
-									$("#img" + i.toString()).attr('src',
-											myObject[i]["경로"]);
+
 									$("#img" + i.toString() + "like").attr(
 											'value', myObject[i]["경로"]);
+
+									$("#img" + i.toString()).css(
+											'background-image',
+											"url(" + myObject[i]["경로"] + ")");
+
 									$("#recom_result" + i.toString()).show();
 								}
 							} else {
@@ -482,6 +529,7 @@
 				.on(
 						'click',
 						function() {
+							console.log($(this).attr('value'));
 							$("#likeupper").attr('value', "");
 							$("#likelower").attr('value', "");
 							$("#likefull").attr('value', "");
