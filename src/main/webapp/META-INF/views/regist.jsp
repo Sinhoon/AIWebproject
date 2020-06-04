@@ -90,22 +90,22 @@
 				<form action="/regist.do" id="form" name="form" method="POST" enctype="multipart/form-data">
 					<div class="input-group form-group">
 						<div class="input-group-prepend">
-							<span class="input-group-text"><i>아이디</i></span>
+							<span class="input-group-text"><i>아이디&nbsp&nbsp&nbsp&nbsp</i></span>
 						</div>
-						<input type="text" class="form-control" placeholder="id"  id="id" name="id">
+						<input type="text" class="form-control"  id="id" name="id">
 						
 					</div>
 					<div class="input-group form-group">
 						<div class="input-group-prepend">
 							<span class="input-group-text"><i>비밀번호</i></span>
 						</div>
-						<input type="password" class="form-control" placeholder="password" id="pwd" name="pwd">
+						<input type="password" class="form-control" id="pwd" name="pwd">
 					</div>
 					<div class="input-group form-group">
 						<div class="input-group-prepend">
-							<span class="input-group-text"><i>나이</i></span>
+							<span class="input-group-text"><i>나이&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</i></span>
 						</div>
-						<input type="text" class="form-control" placeholder="age" id="age" name="age">
+						<input type="text" class="form-control" id="age" name="age">
 					</div>
 					
 					<label><input type="radio" name="sex" value="f" checked> 여자</label>

@@ -41,6 +41,12 @@
 		WHERE EMP_ID = #{EMP_ID}   
 	</select>
 	
+	<select id="getData" resultType="com.example.demo.UserDTO">
+		SELECT *
+		FROM semp
+		WHERE EMP_ID = #{EMP_ID}
+	</select>
+	
 	<select id="checkId" resultType="int">
 		SELECT EXISTS(
 		SELECT EMP_NUM
@@ -53,7 +59,9 @@
 		SELECT EXISTS(
 		SELECT RST_NUM
 		FROM crst_info
-		WHERE RST_PATH = #{RST_PATH})as isChk
+		WHERE RST_PATH = #{RST_PATH}
+		AND EMP_NUM = #{EMP_NUM}
+		)as isChk
 	</select>
 	
 	<insert id="insertLike" parameterType="com.example.demo.LikeDTO">

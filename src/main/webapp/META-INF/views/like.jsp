@@ -149,26 +149,66 @@
 							strDOM += '<div class="single-gallery mb-30">';
 							strDOM += '<div class="gallery-img" style="background-image: url('
 									+ myObject[i]["경로"] + ');"></div>';
-							strDOM += '<div class="thumb-content-box">	';
+							strDOM += '<div class="thumb-content-box" style="position:absolute;top:120%;left:10%;">	';
 
 							if (myObject[i]["상의"] != "not") {
-								strDOM += '<h4><span>상의:</span>'
-										+ myObject[i]["상의"] + '</h4>';
+								var upper = (myObject[i]["상의"]).split("_");
+								
+								strDOM += '<h5 style="color:white"><span>[상의]</span>'
+										 + '</h5>';
+								strDOM += '<h7 style="color:white"><span>색상:</span>'
+											+ upper[0] + '</h7>';
+								strDOM += '<h7 style="color:white"><span>&nbsp 종류:</span>'
+											+ upper[1] + '</h7>';
+								strDOM += '<h7 style="color:white"><span>&nbsp 질감:</span>'
+											+ upper[2] + '</h7>';
+								strDOM += '<h7 style="color:white"><span>&nbsp 무늬:</span>'
+											+ upper[3] + '</h7><br>';
 							}
 							if (myObject[i]["하의"] != "not") {
-								strDOM += '<h4><span>하의:</span>'
-										+ myObject[i]["하의"] + '</h4>';
+								var lower = (myObject[i]["하의"]).split("_");
+								
+								strDOM += '<h5 style="color:white"><span>[하의]</span>'
+										 + '</h5>';
+								strDOM += '<h7 style="color:white"><span>색상:</span>'
+											+ lower[0] + '</h7>';
+								strDOM += '<h7 style="color:white"><span>&nbsp 종류:</span>'
+											+ lower[1] + '</h7>';
+								strDOM += '<h7 style="color:white"><span>&nbsp 질감:</span>'
+											+ lower[2] + '</h7>';
+								strDOM += '<h7 style="color:white"><span>&nbsp 무늬:</span>'
+											+ lower[3] + '</h7><br>';
 							}
 							if (myObject[i]["전신"] != "not") {
-								strDOM += '<h4><span>전신:</span>'
-										+ myObject[i]["전신"] + '</h4>';
+								var full = (myObject[i]["전신"]).split("_");
+								
+								strDOM += '<h5 style="color:white"><span>[전신]</span>'
+										 + '</h5>';
+								strDOM += '<h7 style="color:white"><span>색상:</span>'
+											+ full[0] + '</h7>';
+								strDOM += '<h7 style="color:white"><span>&nbsp 종류:</span>'
+											+ full[1] + '</h7>';
+								strDOM += '<h7 style="color:white"><span>&nbsp 질감:</span>'
+											+ full[2] + '</h7>';
+								strDOM += '<h7 style="color:white"><span>&nbsp 무늬:</span>'
+											+ full[3] + '</h7><br>';
+											
 							}
 							if (myObject[i]["외투"] != "not") {
-								strDOM += '<h4><span>외투:</span>'
-										+ myObject[i]["외투"] + '</h4>';
+								var outer = (myObject[i]["외투"]).split("_");
+								
+								strDOM += '<h5 style="color:white"><span>[외투]</span>'
+										 + '</h5>';
+								strDOM += '<h7 style="color:white"><span>색상:</span>'
+											+ outer[0] + '</h7>';
+								strDOM += '<h7 style="color:white"><span>&nbsp 종류:</span>'
+											+ outer[1] + '</h7>';
+								strDOM += '<h7 style="color:white"><span>&nbsp 질감:</span>'
+											+ outer[2] + '</h7>';
+								strDOM += '<h7 style="color:white"><span>&nbsp 무늬:</span>'
+											+ outer[3] + '</h7><br>';
 							}
-
-							strDOM += '<button  value='+ myObject[i]["경로"] +' class="like" style="color:red;"> <i class="fas fa-angle-right">취소</i></button>';
+							strDOM += '<button  value='+ myObject[i]["경로"] +' class="like" style="color:red;position: absolute; right: 25%;"> <i class="fas fa-angle-right">취소</i></button>';
 							strDOM += '</div>';
 							strDOM += '</div>';
 							strDOM += '</div>';

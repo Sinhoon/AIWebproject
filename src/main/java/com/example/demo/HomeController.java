@@ -91,6 +91,7 @@ public class HomeController {
 		String id = Integer.toString(user.EMP_NUM);
 		System.out.println(id);
 		String age = multipartRequest.getParameter("age");
+		System.out.println(age);
 		String sex = multipartRequest.getParameter("sex");
 		String filePath = "C://mywork/spring/demo/src/main/resources/static/data/user";
 
@@ -209,7 +210,7 @@ public class HomeController {
 			userMapper.deleteLike(like);
 		}
 		return "success";
-
+		
 	}
 	
 	
@@ -256,10 +257,13 @@ public class HomeController {
 		String id = multipartRequest.getParameter("id");
 		String pwd = multipartRequest.getParameter("pwd");
 
+		
 		int num = userMapper.getNum(new UserDTO (0, id,pwd, 0, ""));
+		UserDTO getuser = userMapper.getData(new UserDTO (num, id,pwd, 0, ""));	
 		UserDTO user = new UserDTO (num, id,pwd, 0, "");
 		UserDTO login = userMapper.login(user);
-
+		login.EMP_AGE = getuser.EMP_AGE;
+		login.EMP_SEX = getuser.EMP_SEX;
 		
 		if(login == null) {
 			session.setAttribute("member", null);
@@ -355,12 +359,13 @@ public class HomeController {
 		}
 
 		String age = "";
-		String sex = "";
+		String sex = user.EMP_SEX;
 		String fileName = likeall.toString();
 		
-		Client client = new Client("3",fileName,"", age, sex);		
+		Client client = new Client("3",fileName,"", age, sex);
+		System.out.println(client);
 		JsonObject result = client.getResult();
-		System.out.println(result.size());
+		System.out.println(result);
 		String recom = result.get("list").toString();
 
 		recom = recom.replaceAll("NaN", "");

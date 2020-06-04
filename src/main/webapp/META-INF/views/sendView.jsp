@@ -44,6 +44,44 @@
 .thumb-content .like{
 	color:red;
 }
+
+.file_input_textbox
+{
+float: left
+}
+ 
+.file_input_div
+{
+position: relative;
+width: 100px;
+height: 23px;
+overflow: hidden;
+}
+ 
+.file_input_button
+{
+width: 100px;
+position: absolute;
+top: 0px;
+background-color: #33BB00;
+color: #FFFFFF;
+border-style: solid;
+}
+ 
+.file_input_hidden
+{
+font-size: 45px;
+position: absolute;
+right: 0px;
+top: 0px;
+opacity: 0;
+ 
+filter: alpha(opacity=0);
+-ms-filter: "alpha(opacity=0)";
+-khtml-opacity: 0;
+-moz-opacity: 0;
+}
+
 </style>
 
 </head>
@@ -137,15 +175,25 @@
 												accept="image/*">
 
 										</div>
+						
+
+										
 										<div class="input-group form-group">
 											<div class="input-group-prepend"></div>
-											<input type="text" class="form-control" placeholder="나이"
-												id="age" name="age">
+											<input type="text" class="form-control" placeholder= ${member.EMP_AGE}
+												value=${member.EMP_AGE} id="age" name="age">
 										</div>
 										<div class="input-group form-group">
+										<c:if test="${member.EMP_SEX == 'm'}">
+											<input type="radio" name="sex" value="Female">
+											여자</label> <label><input type="radio" name="sex" value="male" checked>
+												남자</label>
+										</c:if>
+										<c:if test="${member.EMP_SEX == 'f'}">
 											<input type="radio" name="sex" value="Female" checked>
 											여자</label> <label><input type="radio" name="sex" value="male">
 												남자</label>
+										</c:if>
 										</div>
 
 										<input type="text" name="filename" id="filename" value=""
@@ -203,7 +251,7 @@
 
 	<!--  recom   -->
 	<div class="gallery-area pt-30 pb-40" id="recom_result"
-		style="display: none">
+		style="display: none;border-bottom:1px solid white">
 		
 		<div class="container-fluid p-0 fix">
 		<h3 style="color:white;text-align: center;"> 추천 결과 </h3><br><br>
@@ -215,26 +263,30 @@
 							<div class="thumb-content">
 								<div>
 									<div id="img0upperdata">
-										<label for="img0upper">상의 :</label> <input type="text"
-											id="img0upper" name="img0upper" value="" size="50" readonly><br>
-										<br>
+										<h5 style="color:white"><span>[상의]</span></h5> 
+										<input type="text" id="img0upper" name="img0upper" value="" size="50"  style="display:none">
+										<div id="img0upperdata_div"></div>
 									</div>
 									<div id="img0lowerdata">
-										<label for="img0lower">하의:</label> <input type="text"
-											id="img0lower" name="img0lower" value="" size="50" readonly><br>
-										<br>
+										<h5 style="color:white"><span>[하의]</span></h5> 
+										<input type="text"
+											id="img0lower" name="img0lower" value="" size="50"  style="display:none">
+										<div id="img0lowerdata_div"></div>
 									</div>
 									<div id="img0outerdata">
-										<label for="img0outer">외투:</label> <input type="text"
-											id="img0outer" name="img0outer" value="" size="50" readonly><br>
-										<br>
+										<h5 style="color:white"><span>[외투]</span></h5> 
+										 <input type="text"
+											id="img0outer" name="img0outer" value="" size="50"  style="display:none">
+										<div id="img0outerdata_div"></div>
 									</div>
 									<div id="img0fulldata">
-										<label for="img0full">전신:</label> <input type="text"
-											id="img0full" name="img0full" value="" size="50" readonly>
+										<h5 style="color:white"><span>[전신]</span></h5> 
+										 <input type="text"
+											id="img0full" name="img0full" value="" size="50"  style="display:none">
+										<div id="img0fulldata_div"></div>
 									</div>
 									<div>
-										<button id="img0like" value="" class="like">좋아용</button>
+										<button id="img0like" value="" class="like" style="position: absolute; right: 0%">좋아용</button>
 									</div>
 								</div>
 							</div>
@@ -249,26 +301,30 @@
 							<div class="thumb-content">
 								<div>
 									<div id="img1upperdata">
-										<label for="img1upper">상의 :</label> <input type="text"
-											id="img1upper" name="img1upper" value="" size="50" readonly><br>
-										<br>
+										<h5 style="color:white"><span>[상의]</span></h5> 
+										<input type="text" id="img1upper" name="img1upper" value="" size="50"  style="display:none">
+										<div id="img1upperdata_div"></div>
 									</div>
 									<div id="img1lowerdata">
-										<label for="img1lower">하의:</label> <input type="text"
-											id="img1lower" name="img1lower" value="" size="50" readonly><br>
-										<br>
+										<h5 style="color:white"><span>[하의]</span></h5> 
+										<input type="text"
+											id="img1lower" name="img1lower" value="" size="50"  style="display:none">
+										<div id="img1lowerdata_div"></div>
 									</div>
 									<div id="img1outerdata">
-										<label for="img1outer">외투:</label> <input type="text"
-											id="img1outer" name="img1outer" value="" size="50" readonly><br>
-										<br>
+										<h5 style="color:white"><span>[외투]</span></h5> 
+										 <input type="text"
+											id="img1outer" name="img1outer" value="" size="50"  style="display:none">
+										<div id="img1outerdata_div"></div>
 									</div>
 									<div id="img1fulldata">
-										<label for="img1full">전신:</label> <input type="text"
-											id="img1full" name="img1full" value="" size="50" readonly>
+										<h5 style="color:white"><span>[전신]</span></h5> 
+										 <input type="text"
+											id="img1full" name="img1full" value="" size="50"  style="display:none">
+										<div id="img1fulldata_div"></div>
 									</div>
 									<div>
-										<button id="img1like" value="" class="like">좋아용</button>
+										<button id="img1like" value="" class="like" style="position: absolute; right: 0%">좋아용</button>
 									</div>
 								</div>
 							</div>
@@ -282,26 +338,29 @@
 							<div class="thumb-content">
 								<div>
 									<div id="img2upperdata">
-										<label for="img2upper">상의 :</label> <input type="text"
-											id="img2upper" name="img2upper" value="" size="50" readonly><br>
-										<br>
+										<h5 style="color:white"><span>[상의]</span></h5> 
+										<input type="text" id="img2upper" name="img2upper" value="" size="50"  style="display:none">
+										<div id="img2upperdata_div"></div>
 									</div>
 									<div id="img2lowerdata">
-										<label for="img2lower">하의:</label> <input type="text"
-											id="img2lower" name="img2lower" value="" size="50" readonly><br>
-										<br>
+										<h5 style="color:white"><span>[하의]</span></h5> 
+										<input type="text"
+											id="img2lower" name="img2lower" value="" size="50"  style="display:none">
+										<div id="img2lowerdata_div"></div>
 									</div>
 									<div id="img2outerdata">
-										<label for="img2outer">외투:</label> <input type="text"
-											id="img2outer" name="img2outer" value="" size="50" readonly><br>
-										<br>
+										<h5 style="color:white"><span>[외투]</span></h5> 
+										 <input type="text"
+											id="img2outer" name="img2outer" value="" size="50"  style="display:none">
+										<div id="img2outerdata_div"></div>
 									</div>
 									<div id="img2fulldata">
-										<label for="img2full">전신:</label> <input type="text"
-											id="img2full" name="img2full" value="" size="50" readonly>
+										<h5 style="color:white"><span>[전신]</span></h5> 
+										 <input type="text"
+											id="img2full" name="img2full" value="" size="50"  style="display:none">
+										<div id="img2fulldata_div"></div>
 									</div>
-									<div>
-										<button id="img2like" value="" class="like">좋아용</button>
+										<button id="img2like" value="" class="like" style="position: absolute; right: 0%">좋아용</button>
 									</div>
 								</div>
 							</div>
@@ -310,7 +369,7 @@
 				</div>
 			</div>
 		</div>
-	</div>
+
 
 	<div id="sorry" style="display: none">
 		<img src="data/icon/sorry.jpg"><br>
@@ -364,8 +423,8 @@
 											var data = JSON.parse(res.data)
 
 											var strDOM = "";
-											strDOM += '<div class="col-xl-6 col-lg-6 col-md-6" style="border:1px solid white">';
-											strDOM += '<br><h3 style="color:white;text-align: center;"> before </h3><br>';
+											strDOM += '<div class="col-xl-6 col-lg-6 col-md-6" style="border-right:1px solid white">';
+											strDOM += '<br><h3 style="color:white;text-align: center;"> 원본 이미지 </h3><br>';
 											strDOM += '<div class="single-gallery mb-30">';
 											strDOM += '<div class="gallery-img" id="ogimg" style="background-image: url('
 													+ res.ogimg
@@ -375,32 +434,73 @@
 											strDOM += '</div>';
 											strDOM += '</div>';
 
-											strDOM += '<div class="col-xl-6 col-lg-6 col-md-6" style="border:1px solid white">';
-											strDOM += '<br><h3 style="color:white;text-align: center;"> after </h3><br>';
+											strDOM += '<div class="col-xl-6 col-lg-6 col-md-6">';
+											strDOM += '<br><h3 style="color:white;text-align: center;"> 분석 결과 </h3><br>';
 											strDOM += '<div class="single-gallery mb-30">';
 											strDOM += '<div class="gallery-img" id="afimg" style="background-image: url('
 													+ res.afimg
 													+ ');background-size: contain; background-position: center;"></div>';
 											strDOM += '<div class="thumb-content-box">	';
 											if (data.상의 != "") {
-												strDOM += '<h5 style="color:white"><span>상의:</span>'
-														+ data.상의 + '</h5>';
-												strDOM += '<button class="btn-recom" id="upperbt" value="0" style="color:red;">상의 추천</button>';
+												var upper = (data.상의).split("_");
+												
+												strDOM += '<h5 style="color:white"><span>[상의]</span>'
+														 + '</h5>';
+												strDOM += '<h7 style="color:white"><span>색상:</span>'
+															+ upper[0] + '</h7>';
+												strDOM += '<h7 style="color:white"><span>&nbsp 종류:</span>'
+															+ upper[1] + '</h7>';
+												strDOM += '<h7 style="color:white"><span>&nbsp 질감:</span>'
+															+ upper[2] + '</h7>';
+												strDOM += '<h7 style="color:white"><span>&nbsp 무늬:</span>'
+															+ upper[3] + '</h7><br>';
+												strDOM += '<button class="btn-recom" id="upperbt" value="0" style="color:red;">상의 추천</button><br>';
 											}
 											if (data.하의 != "") {
-												strDOM += '<h5 style="color:white"><span>하의:</span>'
-														+ data.하의 + '</h5>';
-												strDOM += '<button class="btn-recom" id="lowerbt" value="1" style="color:red;">하의 추천</button>';
+												var lower = (data.하의).split("_");
+												
+												strDOM += '<h5 style="color:white"><span>[하의]</span>'
+														 + '</h5>';
+												strDOM += '<h7 style="color:white"><span>색상:</span>'
+															+ lower[0] + '</h7>';
+												strDOM += '<h7 style="color:white"><span>&nbsp 종류:</span>'
+															+ lower[1] + '</h7>';
+												strDOM += '<h7 style="color:white"><span>&nbsp 질감:</span>'
+															+ lower[2] + '</h7>';
+												strDOM += '<h7 style="color:white"><span>&nbsp 무늬:</span>'
+															+ lower[3] + '</h7><br>';
+												strDOM += '<button class="btn-recom" id="lowerbt" value="1" style="color:red;">하의 추천</button><br>';
 											}
 											if (data.전신 != "") {
-												strDOM += '<h5 style="color:white"><span>전신:</span>'
-														+ data.전신 + '</h5>';
-												strDOM += '<button class="btn-recom" id="fullbt" value="3" style="color:red;">전신 추천</button>';
+												var full = (data.전신).split("_");
+												
+												strDOM += '<h5 style="color:white"><span>[전신]</span>'
+														 + '</h5>';
+												strDOM += '<h7 style="color:white"><span>색상:</span>'
+															+ full[0] + '</h7>';
+												strDOM += '<h7 style="color:white"><span>&nbsp 종류:</span>'
+															+ full[1] + '</h7>';
+												strDOM += '<h7 style="color:white"><span>&nbsp 질감:</span>'
+															+ full[2] + '</h7>';
+												strDOM += '<h7 style="color:white"><span>&nbsp 무늬:</span>'
+															+ full[3] + '</h7><br>';
+															
+												strDOM += '<button class="btn-recom" id="fullbt" value="3" style="color:red;">전신 추천</button><br>';
 											}
 											if (data.외투 != "") {
-												strDOM += '<h5 style="color:white"><span>외투:</span>'
-														+ data.외투 + '</h5>';
-												strDOM += '<button class="btn-recom" id="outerbt" value="2" style="color:red;">외투 추천</button>';
+												var outer = (data.외투).split("_");
+												
+												strDOM += '<h5 style="color:white"><span>[외투]</span>'
+														 + '</h5>';
+												strDOM += '<h7 style="color:white"><span>색상:</span>'
+															+ outer[0] + '</h7>';
+												strDOM += '<h7 style="color:white"><span>&nbsp 종류:</span>'
+															+ outer[1] + '</h7>';
+												strDOM += '<h7 style="color:white"><span>&nbsp 질감:</span>'
+															+ outer[2] + '</h7>';
+												strDOM += '<h7 style="color:white"><span>&nbsp 무늬:</span>'
+															+ outer[3] + '</h7><br>';
+												strDOM += '<button class="btn-recom" id="outerbt" value="2" style="color:red;">외투 추천</button><br>';
 											}
 
 											strDOM += '</div>';
@@ -476,20 +576,48 @@
 
 								for (i in myObject) {
 									if (myObject[i]["상의"] != "") {
+										
 										$("#img" + i.toString() + "upperdata")
-												.show();
+												.show(); 
+										$("#img" + i.toString() + "upperdata_div").empty();
+										var up = myObject[i]["상의"].split("_");
+										$("#img" + i.toString() + "upperdata_div").append( '<h7 style="color:white"><span>색상:</span>'+ up[0] + '</h7>');
+										$("#img" + i.toString() + "upperdata_div").append( '<h7 style="color:white"><span>&nbsp종류:</span>'+ up[1] + '</h7>');
+										$("#img" + i.toString() + "upperdata_div").append( '<h7 style="color:white"><span>&nbsp질감:</span>'+ up[2] + '</h7>');
+										$("#img" + i.toString() + "upperdata_div").append( '<h7 style="color:white"><span>&nbsp무늬:</span>'+ up[3] + '</h7>');
 									}
 									if (myObject[i]["하의"] != "") {
 										$("#img" + i.toString() + "lowerdata")
 												.show();
+										$("#img" + i.toString() + "lowerdata_div").empty();
+										var lo = myObject[i]["하의"].split("_");
+										$("#img" + i.toString() + "lowerdata_div").append( '<h7 style="color:white"><span>색상:</span>'+ lo[0] + '</h7>');
+										$("#img" + i.toString() + "lowerdata_div").append( '<h7 style="color:white"><span>&nbsp종류:</span>'+ lo[1] + '</h7>');
+										$("#img" + i.toString() + "lowerdata_div").append( '<h7 style="color:white"><span>&nbsp질감:</span>'+ lo[2] + '</h7>');
+										$("#img" + i.toString() + "lowerdata_div").append( '<h7 style="color:white"><span>&nbsp무늬:</span>'+ lo[3] + '</h7>');
+										
 									}
 									if (myObject[i]["외투"] != "") {
 										$("#img" + i.toString() + "outerdata")
 												.show();
+										$("#img" + i.toString() + "outerdata_div").empty();
+										var ou = myObject[i]["외투"].split("_");
+										$("#img" + i.toString() + "outerdata").append( '<h7 style="color:white"><span>색상:</span>'+ ou[0] + '</h7>');
+										$("#img" + i.toString() + "outerdata").append( '<h7 style="color:white"><span>&nbsp종류:</span>'+ ou[1] + '</h7>');
+										$("#img" + i.toString() + "outerdata").append( '<h7 style="color:white"><span>&nbsp질감:</span>'+ ou[2] + '</h7>');
+										$("#img" + i.toString() + "outerdata").append( '<h7 style="color:white"><span>&nbsp무늬:</span>'+ ou[3] + '</h7>');
+										
 									}
 									if (myObject[i]["전신"] != "") {
 										$("#img" + i.toString() + "fulldata")
 												.show();
+										$("#img" + i.toString() + "fulldata_div").empty();
+										var fu = myObject[i]["전신"].split("_");
+										$("#img" + i.toString() + "fulldata").append( '<h7 style="color:white"><span>색상:</span>'+ fu[0] + '</h7>');
+										$("#img" + i.toString() + "fulldata").append( '<h7 style="color:white"><span>&nbsp종류:</span>'+ fu[1] + '</h7>');
+										$("#img" + i.toString() + "fulldata").append( '<h7 style="color:white"><span>&nbsp질감:</span>'+ fu[2] + '</h7>');
+										$("#img" + i.toString() + "fulldata").append( '<h7 style="color:white"><span>&nbsp무늬:</span>'+ fu[3] + '</h7>');
+										
 									}
 
 									$("#img" + i.toString() + "upper").attr(
@@ -534,6 +662,7 @@
 							$("#likelower").attr('value', "");
 							$("#likefull").attr('value', "");
 							$("#likeouter").attr('value', "");
+							console.log($(this).attr('value'));
 							$("#likeinput")
 									.attr('value', $(this).attr('value'));
 							if ($(this).text() == '좋아용') {

@@ -15,6 +15,7 @@ public interface UserMapper {
     public int countNum();
     public UserDTO login(UserDTO dto) throws Exception;
     public int getNum(UserDTO dto);
+    public UserDTO getData(UserDTO dto);
     public int checkLike(LikeDTO dto);
     public int checkId(UserDTO dto);
     public void insertLike(LikeDTO dto) throws Exception;
